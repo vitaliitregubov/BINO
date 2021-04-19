@@ -93,7 +93,9 @@ export default {
     },
     throttleMethod: throttle(function(){
       try {
-        this.$store.dispatch('loadRepos', `${this.BASE_URL}q=${this.inputValue}&per_page=10&page=${this.page}`)
+        const req = this.inputValue || 'stars:>1000'
+        this.$store.dispatch('loadRepos', `${this.BASE_URL}q=${req}&per_page=10&page=${this.page}`)
+        console.log(req)
       } catch (error) {
           console.log(error)
           this.error = true
